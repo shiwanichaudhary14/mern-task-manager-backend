@@ -14,7 +14,7 @@ app.use(express.json());
 
 // CORS Configuration
 const corsOptions = {
-  origin: "*",  // Allow all origins temporarily for testing
+  origin: "http://localhost:5173",  // Allow all origins temporarily for testing
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -28,21 +28,9 @@ app.use(
   })
 );
 
-// Custom Headers
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");  // Make sure this is set
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("X-Content-Type-Options", "nosniff");
-  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
-  res.setHeader("Content-Type", "application/json; charset=utf-8");
-  next();
-});
 
-// Handle Preflight Requests
-app.options("*", (req, res) => {
-  res.status(200).send();
-});
+// ✅ Handle Preflight Requests
+app.options("*", cors(corsOptions));
 
 // Routes
 app.use("/api/auth", authRoutes);
