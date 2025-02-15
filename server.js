@@ -14,7 +14,7 @@ app.use(express.json());
 
 // CORS Configuration
 const corsOptions = {
-  origin: "http://localhost:5173",  // Allow all origins temporarily for testing
+  origin: ["http://localhost:5173", "https://mern-task-manager-frontend-six.vercel.app/login"],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
