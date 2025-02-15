@@ -14,7 +14,7 @@ app.use(express.json());
 
 // CORS Configuration
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://mern-task-manager-frontend-six.vercel.app/login"],
+  origin: ["http://localhost:5173", "https://mern-task-manager-frontend-six.vercel.app"],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
@@ -40,10 +40,6 @@ app.use((req, res, next) => {
   res.setHeader("Cache-Control", "no-store");
   next();
 });
-
-
-//  Handle Preflight Requests
-app.options("*", cors(corsOptions));
 
 // Routes
 app.use("/api/auth", authRoutes);
